@@ -4,9 +4,18 @@
     <BreezeValidationErrors class="mb-4" />
 
     <form @submit.prevent="submit">
-        <div>
-            <BreezeLabel for="name" value="Name" />
-            <BreezeInput id="name" type="text" class="mt-1 block w-full" v-model="form.name" required autofocus autocomplete="name" />
+        <div class="flex space-x-2">
+            <div>
+                <BreezeLabel for="firstname" value="Firstname"/>
+                <BreezeInput id="firstname" type="text" class="mt-1 block w-full" v-model="form.firstname" required
+                             autofocus autocomplete="firstname"/>
+            </div>
+
+            <div>
+                <BreezeLabel for="lastname" value="Lastname"/>
+                <BreezeInput id="lastname" type="text" class="mt-1 block w-full" v-model="form.lastname" required
+                             autofocus autocomplete="lastname"/>
+            </div>
         </div>
 
         <div class="mt-4">
@@ -59,7 +68,8 @@ export default {
     data() {
         return {
             form: this.$inertia.form({
-                name: '',
+                firstname: '',
+                lastname: '',
                 email: '',
                 password: '',
                 password_confirmation: '',

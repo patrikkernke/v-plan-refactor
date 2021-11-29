@@ -78,18 +78,53 @@ class UserController extends Controller
         //
     }
 
-    public function edit($id)
+    public function edit(User $user)
     {
-        //
+        return Inertia::render('Users/Edit', [
+            'user' => [
+                'id'        => $user->id,
+                'firstname' => $user->firstname,
+                'lastname'  => $user->lastname,
+                'email'     => $user->email,
+                'can'       => [
+                    'login'       => $user->can_login,
+                    'manageUsers' => $user->can_manage_users,
+                ],
+                'canBe'     => [
+                    'chairman_at_public_meetings'    => $user->can_be_chairman_at_public_meetings,
+                    'watchtower_reader'              => $user->can_be_watchtower_reader,
+                    'can_be_service_meetings_leader' => $user->can_be_service_meetings_leader,
+                ],
+            ]
+        ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        Gate::authorize('manage-users');
+
+        $request->validate([
+            'firstname' => 'required|string|max:255',
+            'lastname' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+        ]);
+
+        $user->update([
+            'firstname' => $request->firstname,
+            'lastname' => $request->lastname,
+            'email' => $request->email,
+            'can_manage_users' => $request->input('can.manageUsers'),
+            'can_login' => $request->input('can.login'),
+            'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings'),
+            'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader'),
+            'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader'),
+        ]);
     }
 
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $user->delete();
+
+        return redirect()->route('users.index');
     }
 }

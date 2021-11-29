@@ -80,7 +80,7 @@
                         <div class="px-4 sm:px-0">
                             <h3 class="text-lg font-medium leading-6 text-gray-900">App Permissions</h3>
                             <p class="mt-1 text-sm text-gray-600">
-                                Choose wisely. Great powers for this app.
+                                Choose wisely. You distribute great powers.
                             </p>
                         </div>
                     </div>
@@ -176,7 +176,10 @@
                 </div>
             </div>
 
-            <div class="flex justify-end">
+            <div class="flex justify-end space-x-2">
+                <ButtonLink :href="route('users.index')" class="text-base" appearance="secondary">
+                    Cancel
+                </ButtonLink>
                 <Button class="text-base" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
                     Create
                 </Button>
@@ -194,6 +197,7 @@ import Label from "@/Components/Label"
 import Input from "@/Components/Input"
 import Button from "@/Components/Button"
 import Checkbox from "@/Components/Checkbox"
+import  ButtonLink from "@/Components/ButtonLink"
 
 export default {
     components: {
@@ -203,6 +207,7 @@ export default {
         Label,
         Input,
         Button,
+                ButtonLink,
         Checkbox
     },
 

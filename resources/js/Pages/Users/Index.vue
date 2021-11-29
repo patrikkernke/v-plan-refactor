@@ -20,14 +20,19 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
 
             <ul role="list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
                 <li v-for="user in users" :key="user.email" class="col-span-1 bg-white rounded-lg shadow divide-y divide-gray-200">
 
-                    <div class="px-8 py-4">
+                    <div class="px-6 py-4">
                         <div class="flex">
 
                             <div class="flex-1">
                                 <h3 class="text-gray-900 text-sm font-medium truncate">
-                                    {{ user.name }}
+                                    <Link :href="route('users.edit', user.id)"
+                                          class="hover:text-indigo-600"
+                                    >
+                                        {{ user.name }}
+                                    </Link>
                                 </h3>
 
                                 <div class="mt-2 space-y-1">

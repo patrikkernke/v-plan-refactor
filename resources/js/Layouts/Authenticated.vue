@@ -19,7 +19,7 @@
                                     Dashboard
                                 </BreezeNavLink>
 
-                                <BreezeNavLink :href="route('users.index')" :active="route().current('users.index')">
+                                <BreezeNavLink v-if="$page.props.auth.user.can.manageUsers" :href="route('users.index')" :active="route().current('users.index')">
                                     Users
                                 </BreezeNavLink>
                             </div>

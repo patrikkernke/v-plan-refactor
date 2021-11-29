@@ -19,6 +19,11 @@ class UserFactory extends Factory
             'lastname' => $this->faker->lastName(),
             'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
+            'can_login' => $this->faker->boolean(15),
+            'can_manage_users' => $this->faker->boolean(15),
+            'can_be_chairman_at_public_meetings' => $this->faker->boolean(30),
+            'can_be_watchtower_reader' => $this->faker->boolean(50),
+            'can_be_service_meetings_leader' => $this->faker->boolean(30),
             'password' => '$2y$10$92IXUNpkjO0rOQ5byMi.Ye4oKoEa3Ro9llC/.og/at2.uheWG/igi', // password
             'remember_token' => Str::random(10),
         ];

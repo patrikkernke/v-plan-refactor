@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rule;
 use Inertia\Inertia;
 
 use Illuminate\Validation\Rules;
@@ -62,11 +63,11 @@ class UserController extends Controller
             'lastname' => $request->lastname,
             'email' => $request->email,
             'password' => Hash::make($randomPassword),
-            'can_manage_users' => $request->input('can.manageUsers'),
-            'can_login' => $request->input('can.login'),
-            'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings'),
-            'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader'),
-            'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader'),
+            'can_manage_users' => $request->input('can.manageUsers', false),
+            'can_login' => $request->input('can.login', false),
+            'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings', false),
+            'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader', false),
+            'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader', false),
         ]);
 
 
@@ -80,6 +81,8 @@ class UserController extends Controller
 
     public function edit(User $user)
     {
+        Gate::authorize('manage-users');
+
         return Inertia::render('Users/Edit', [
             'user' => [
                 'id'        => $user->id,
@@ -106,23 +109,27 @@ class UserController extends Controller
         $request->validate([
             'firstname' => 'required|string|max:255',
             'lastname' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => ['required', 'string', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
         ]);
 
         $user->update([
             'firstname' => $request->firstname,
             'lastname' => $request->lastname,
             'email' => $request->email,
-            'can_manage_users' => $request->input('can.manageUsers'),
-            'can_login' => $request->input('can.login'),
-            'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings'),
-            'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader'),
-            'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader'),
+            'can_manage_users' => $request->input('can.manageUsers', false),
+            'can_login' => $request->input('can.login', false),
+            'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings', false),
+            'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader', false),
+            'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader', false),
         ]);
+
+        return redirect()->route('users.index');
     }
 
     public function destroy(User $user)
     {
+        Gate::authorize('manage-users');
+
         $user->delete();
 
         return redirect()->route('users.index');

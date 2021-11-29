@@ -19,6 +19,10 @@
                                     Dashboard
                                 </BreezeNavLink>
 
+                                <BreezeNavLink :href="route('calendar')" :active="route().current('calendar')">
+                                    Calendar
+                                </BreezeNavLink>
+
                                 <BreezeNavLink v-if="$page.props.auth.user.can.manageUsers" :href="route('users.index')" :active="route().current('users.index')">
                                     Users
                                 </BreezeNavLink>

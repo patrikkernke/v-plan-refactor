@@ -249,7 +249,7 @@ export default {
 
     methods: {
         submit() {
-            this.form.post(this.route('users.update'))
+            this.form.put(this.route('users.update', this.user.id))
         }
     }
 }

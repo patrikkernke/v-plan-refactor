@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CalendarController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +36,7 @@ Route::middleware('auth', 'verified')->group(function () {
     })->name('dashboard');
 
     Route::resource('users', UserController::class);
+    Route::get('calendar', CalendarController::class)->name('calendar');
 });
 
 require __DIR__.'/auth.php';

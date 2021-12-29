@@ -13,7 +13,7 @@
                         <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Treffpunkt</a>
                     </MenuItem>
                     <MenuItem v-slot="{ active }">
-                        <a href="#" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Öffentliche Zusammenkunft</a>
+                        <a href="#" @click="test" :class="[active ? 'bg-gray-100 text-gray-900' : 'text-gray-700', 'block px-4 py-2 text-sm']">Öffentliche Zusammenkunft</a>
                     </MenuItem>
                 </div>
                 <div class="py-1">
@@ -38,6 +38,12 @@ import { Menu, MenuButton, MenuItems, MenuItem } from "@headlessui/vue";
 import {PlusCircleIcon} from "@heroicons/vue/outline"
 
 export default {
+    props: {
+        forDate: {
+            type: String,
+            default: null
+        }
+    },
     components: {
         Menu,
         MenuButton,
@@ -45,5 +51,11 @@ export default {
         MenuItem,
         PlusCircleIcon,
     },
+
+    methods: {
+        test() {
+            alert(`Neue Öffentliche Zusammenkunft am ${this.forDate}`);
+        }
+    }
 };
 </script>

@@ -24,6 +24,7 @@ class CreateUsersTable extends Migration
 
             $table->boolean('can_login')->default(false);
             $table->boolean('can_manage_users')->default(false);
+            $table->boolean('can_manage_digital_board')->default(false);
 
             $table->boolean('can_be_chairman_at_public_meetings')->default(false);
             $table->boolean('can_be_watchtower_reader')->default(false);

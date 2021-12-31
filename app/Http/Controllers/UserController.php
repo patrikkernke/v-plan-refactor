@@ -65,6 +65,7 @@ class UserController extends Controller
             'password' => Hash::make($randomPassword),
             'can_manage_users' => $request->input('can.manageUsers', false),
             'can_login' => $request->input('can.login', false),
+            'can_manage_digital_board' => $request->input('can.manageDigitalBoard', false),
             'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings', false),
             'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader', false),
             'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader', false),
@@ -92,6 +93,7 @@ class UserController extends Controller
                 'can'       => [
                     'login'       => $user->can_login,
                     'manageUsers' => $user->can_manage_users,
+                    'manageDigitalBoard' => $user->can_manage_digital_board,
                 ],
                 'canBe'     => [
                     'chairman_at_public_meetings'    => $user->can_be_chairman_at_public_meetings,
@@ -118,6 +120,7 @@ class UserController extends Controller
             'email' => $request->email,
             'can_manage_users' => $request->input('can.manageUsers', false),
             'can_login' => $request->input('can.login', false),
+            'can_manage_digital_board' => $request->input('can.manageDigitalBoard', false),
             'can_be_chairman_at_public_meetings' => $request->input('canBe.chairmanAtPublicMeetings', false),
             'can_be_watchtower_reader' => $request->input('canBe.watchtowerReader', false),
             'can_be_service_meetings_leader' => $request->input('canBe.serviceMeetingsLeader', false),

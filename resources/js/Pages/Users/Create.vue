@@ -112,6 +112,16 @@
                                         </div>
                                     </div>
 
+                                    <div class="flex items-start">
+                                        <div class="flex items-center h-5">
+                                            <Checkbox id="manage-digital-board" name="manage-digital-board" v-model:checked="form.can.manageDigitalBoard" />
+                                        </div>
+                                        <div class="ml-3 text-sm">
+                                            <Label for="manage-digital-board" value="Manage digital board" />
+                                            <p class="text-gray-500">Add and delete information on public digital board.</p>
+                                        </div>
+                                    </div>
+
                                 </div>
                             </div>
                     </div>
@@ -223,7 +233,8 @@ export default {
                 email: '',
                 can: {
                     login: false,
-                    manageUsers: false
+                    manageUsers: false,
+                    manageDigitalBoard: false,
                 },
                 canBe: {
                     chairmanAtPublicMeetings: false,

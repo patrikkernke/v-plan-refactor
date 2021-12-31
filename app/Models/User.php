@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'password',
         'can_login',
+        'can_manage_digital_board',
         'can_manage_users',
         'can_be_chairman_at_public_meetings',
         'can_be_watchtower_reader',
@@ -49,6 +50,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at'                  => 'datetime',
         'can_login'                          => 'boolean',
+        'can_manage_digital_board'           => 'boolean',
         'can_manage_users'                   => 'boolean',
         'can_be_chairman_at_public_meetings' => 'boolean',
         'can_be_watchtower_reader'           => 'boolean',
@@ -71,7 +73,8 @@ class User extends Authenticatable
     {
         return [
             'login' => (bool) $this->attributes['can_login'],
-            'manageUsers' => (bool) $this->attributes['can_manage_users']
+            'manageUsers' => (bool) $this->attributes['can_manage_users'],
+            'manageDigitalBoard' => (bool) $this->attributes['can_manage_digital_board']
         ];
     }
 }

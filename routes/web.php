@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CalendarController;
+use App\Http\Controllers\DigitalBoardController;
 use App\Http\Controllers\UserController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -17,6 +18,8 @@ use Inertia\Inertia;
 |
 */
 
+Route::get('/download/{document}', [DigitalBoardController::class, 'download'])->name('digital-board.download');
+
 Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
@@ -24,10 +27,11 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('welcome');
 
-
-
+Route::get('/aushang', [DigitalBoardController::class, 'index'])
+    ->middleware('token.public')
+    ->name('digital-board.index');
 
 Route::middleware('auth', 'verified')->group(function () {
 
@@ -37,6 +41,10 @@ Route::middleware('auth', 'verified')->group(function () {
 
     Route::resource('users', UserController::class);
     Route::get('calendar', CalendarController::class)->name('calendar');
+
+    Route::get('digital-board', [DigitalBoardController::class, 'edit'])->name('digital-board.edit');
+    Route::post('digital-board', [DigitalBoardController::class, 'store'])->name('digital-board.store');
+    Route::delete('digital-board/{document}', [DigitalBoardController::class, 'destroy'])->name('digital-board.destroy');
 });
 
 require __DIR__.'/auth.php';

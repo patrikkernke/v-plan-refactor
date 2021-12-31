@@ -29,5 +29,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('manage-users', function (User $user) {
             return $user->can_manage_users;
         });
+
+        Gate::define('manage-digital-board', function (User $user) {
+            return $user->can_manage_digital_board;
+        });
     }
 }

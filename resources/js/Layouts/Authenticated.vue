@@ -19,6 +19,14 @@
                                     Dashboard
                                 </BreezeNavLink>
 
+                                <BreezeNavLink
+                                    v-if="$page.props.auth.user.can.manageDigitalBoard"
+                                    :href="route('digital-board.edit')"
+                                    :active="route().current('digital-board.edit')"
+                                >
+                                    Digital Board
+                                </BreezeNavLink>
+
                                 <BreezeNavLink :href="route('calendar')" :active="route().current('calendar')">
                                     Calendar
                                 </BreezeNavLink>

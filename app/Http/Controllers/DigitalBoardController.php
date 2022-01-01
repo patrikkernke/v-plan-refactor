@@ -48,7 +48,7 @@ class DigitalBoardController extends Controller
 
     public function destroy(Document $document)
     {
-        Gate::authorize('manage-users');
+        Gate::authorize('manage-digital-board');
 
         $document->delete();
 

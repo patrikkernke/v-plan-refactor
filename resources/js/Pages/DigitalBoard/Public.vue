@@ -3,13 +3,13 @@
 
     <div class="min-h-screen bg-gray-100 pt-16">
 
-        <div class="w-96 mx-auto">
+        <div class="px-8 sm:px-0 sm:w-96 sm:mx-auto">
 
-            <h1 class="font-light text-3xl text-gray-700">
+            <h1 class="font-light text-2xl sm:text-3xl text-gray-700">
                 Digitales Brett
             </h1>
 
-            <h2 class="font-bold text-base">
+            <h2 class="font-bold text-sm sm:text-base">
                 Versammlung Neuwied
             </h2>
 
@@ -17,15 +17,17 @@
                 Den aktuellsten Plan durch Klicken / Tippen anschauen oder herunterladen.
             </div>
 
-            <h3 class="mt-8 font-bold">
-                Bekanntmachungen
-            </h3>
-            <div class="space-y-2 mt-3">
-                <PdfDownloadButton
-                    v-for="doc in documents['announcement']"
-                    :label="doc.label"
-                    :url="route('digital-board.download', doc.id)"
-                />
+            <div v-if="documents['announcement']">
+                <h3 class="mt-8 font-bold">
+                    Bekanntmachungen
+                </h3>
+                <div class="space-y-2 mt-3">
+                    <PdfDownloadButton
+                        v-for="doc in documents['announcement']"
+                        :label="doc.label"
+                        :url="route('digital-board.download', doc.id)"
+                    />
+                </div>
             </div>
 
             <div v-if="documents['public-meeting']">

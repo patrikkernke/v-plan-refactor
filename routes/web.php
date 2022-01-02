@@ -45,6 +45,7 @@ Route::middleware('auth', 'verified')->group(function () {
     Route::get('digital-board', [DigitalBoardController::class, 'edit'])->name('digital-board.edit');
     Route::post('digital-board', [DigitalBoardController::class, 'store'])->name('digital-board.store');
     Route::delete('digital-board/{document}', [DigitalBoardController::class, 'destroy'])->name('digital-board.destroy');
+
 });
 
 require __DIR__.'/auth.php';

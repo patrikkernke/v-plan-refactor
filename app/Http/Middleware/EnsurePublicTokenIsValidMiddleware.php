@@ -11,10 +11,12 @@ class EnsurePublicTokenIsValidMiddleware
 {
     public function handle(Request $request, Closure $next)
     {
-        $isValid = Hash::check($request->input('geheim'), env('TOKEN_PUBLIC'));
 
-        ray(URL::to(config('app.url')));
-        if ($isValid === false) {
+        if (config('pixelkode.token.public') === null) {
+            return $next($request);
+        }
+
+        if ($request->input('geheim') !== config('pixelkode.token.public')) {
             return redirect()->route('welcome');
         }
 

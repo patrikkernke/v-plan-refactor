@@ -1,11 +1,11 @@
 <template>
     <Head title="Digitales Brett" />
 
-    <div class="min-h-screen bg-gray-100 pt-16">
+    <div class="min-h-screen bg-gray-100 pt-16 dark:bg-gray-800">
 
-        <div class="px-8 sm:px-0 sm:w-96 sm:mx-auto">
+        <div class="px-8 sm:px-0 sm:w-96 sm:mx-auto dark:text-gray-400">
 
-            <h1 class="font-light text-2xl sm:text-3xl text-gray-700">
+            <h1 class="font-light text-2xl sm:text-3xl text-gray-700 dark:text-gray-300">
                 Digitales Brett
             </h1>
 
@@ -18,7 +18,7 @@
             </div>
 
             <div v-if="documents['announcement']">
-                <h3 class="mt-8 font-bold">
+                <h3 class="mt-8 font-bold dark:text-gray-300">
                     Bekanntmachungen
                 </h3>
                 <div class="space-y-2 mt-3">
@@ -31,7 +31,7 @@
             </div>
 
             <div v-if="documents['public-meeting']">
-                <h3 class="mt-8 font-bold">
+                <h3 class="mt-8 font-bold dark:text-gray-300">
                     Öffentliche Zusammenkünfte
                 </h3>
                 <div class="space-y-2 mt-3">
@@ -44,7 +44,7 @@
             </div>
 
             <div v-if="documents['midweek-meeting']">
-                <h3 class="mt-8 font-bold">
+                <h3 class="mt-8 font-bold dark:text-gray-300">
                     Leben- und Dienstzusammenkunft
                 </h3>
                 <div class="space-y-2 mt-3">
@@ -57,7 +57,7 @@
             </div>
 
             <div v-if="documents['service-meeting']">
-                <h3 class="mt-8 font-bold">
+                <h3 class="mt-8 font-bold dark:text-gray-300">
                     Treffpunkte
                 </h3>
                 <div class="space-y-2 mt-3">

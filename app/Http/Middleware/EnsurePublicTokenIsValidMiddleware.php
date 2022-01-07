@@ -16,7 +16,7 @@ class EnsurePublicTokenIsValidMiddleware
             return $next($request);
         }
 
-        if ($request->input('geheim') !== config('pixelkode.token.public')) {
+        if ($request->input('neuwied') !== config('pixelkode.token.public')) {
             return redirect()->route('welcome');
         }
 
